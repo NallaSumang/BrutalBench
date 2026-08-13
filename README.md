@@ -1,4 +1,4 @@
-<div align="center">
+﻿<div align="center">
   <h1>⚔️ BrutalBench</h1>
   <p>An AI-powered code evaluation framework with a leaderboard dashboard.</p>
 </div>
@@ -21,7 +21,7 @@
 │ └──────┬───────┘     └──────────────┬───────────────┘ │
 └────────┼────────────────────────────┼─────────────────┘
          │                            │
-         ▼                            ▼
+         v                            v
 ┌──────────────────┐       ┌────────────────────────────┐
 │ Supabase         │       │ Google Gemini Engine       │
 │ (PostgreSQL)     │       │ (@google/generative-ai)    │
