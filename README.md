@@ -11,6 +11,28 @@
 
 ## 🏗️ System Architecture
 
+```text
+┌───────────────────────────────────────────────────────┐
+│ Next.js 16 Monolith (Dashboard & API)                 │
+│                                                       │
+│ ┌──────────────┐     ┌──────────────────────────────┐ │
+│ │  NextAuth    │     │  Evaluation API Endpoints    │ │
+│ │ (GitHub SSO) │     │  (api/evaluate, api/history) │ │
+│ └──────┬───────┘     └──────────────┬───────────────┘ │
+└────────┼────────────────────────────┼─────────────────┘
+         │                            │
+         ▼                            ▼
+┌──────────────────┐       ┌────────────────────────────┐
+│ Supabase         │       │ Google Gemini Engine       │
+│ (PostgreSQL)     │       │ (@google/generative-ai)    │
+│                  │       │ + js-tiktoken (Counting)   │
+│ ┌──────────────┐ │       └──────────────┬─────────────┘
+│ │ Leaderboard  │ │                      │
+│ │ Schema       │ │◀───────── n8n ───────┘
+│ └──────────────┘ │       (Webhooks & Automation)
+└──────────────────┘
+```
+
 - **Frontend & Backend (Monolith):** Next.js 16 App Router (`frontend/`) providing both the UI dashboard and the internal evaluation API endpoints (`api/evaluate/`, `api/history/`).
 - **Authentication:** NextAuth with GitHub OAuth — users authenticate via their GitHub accounts.
 - **AI Engine:** Google Generative AI (`@google/generative-ai`) powers the code evaluation and scoring pipeline. Token counting is handled via `js-tiktoken`.
